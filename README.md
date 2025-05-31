@@ -58,8 +58,11 @@ def home():
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
 ```
+### 2. requirements.txt
+flask
+gunicorn
 
-### 2. Dockerize the App
+### 3. Dockerize the App
 ```dockerfile
 # Dockerfile
 FROM python:3.9-slim
@@ -78,7 +81,7 @@ docker run -p 5000:5000 flask-app
 
 ---
 
-### 3. Push Docker Image to ECR
+### 4. Push Docker Image to ECR
 ```bash
 aws ecr create-repository --repository-name flask-app
 aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <aws_account_id>.dkr.ecr.us-east-1.amazonaws.com
@@ -89,7 +92,7 @@ docker push <aws_account_id>.dkr.ecr.us-east-1.amazonaws.com/flask-app
 
 ---
 
-### 4. Provision AWS Infrastructure with Terraform
+### 5. Provision AWS Infrastructure with Terraform
 ```hcl
 # main.tf (inside terraform/)
 provider "aws" {
@@ -123,7 +126,7 @@ terraform apply
 
 ---
 
-### 5. Connect to EKS Cluster
+### 6. Connect to EKS Cluster
 ```bash
 aws eks --region us-east-1 update-kubeconfig --name flask-cluster
 kubectl get nodes
@@ -131,7 +134,7 @@ kubectl get nodes
 
 ---
 
-### 6. Kubernetes Deployment
+### 7. Kubernetes Deployment
 ```yaml
 # deployment.yaml
 apiVersion: apps/v1
@@ -179,7 +182,7 @@ kubectl apply -f service.yaml
 
 ---
 
-### 7. Jenkins Pipeline (Jenkinsfile)
+### 8. Jenkins Pipeline (Jenkinsfile)
 ```groovy
 pipeline {
     agent any

@@ -59,6 +59,7 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
 ```
 ### 2. requirements.txt
+```requirements.txt
 flask
 gunicorn
 

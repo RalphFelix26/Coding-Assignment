@@ -62,6 +62,7 @@ if __name__ == '__main__':
 ```requirements.txt
 flask
 gunicorn
+```
 
 ### 3. Dockerize the App
 ```dockerfile
